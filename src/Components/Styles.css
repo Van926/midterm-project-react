@@ -1,0 +1,108 @@
+body{
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(225, 188, 143);
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+h1{
+    font-size: 40px;
+}
+
+.AddForm-Container{
+    margin-top: 50px;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 30px;
+    background-color: rgb(178, 229, 229);
+    margin-left: 500PX;
+    margin-right: 500px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.AddForm-Container label{
+    font-size: 20px;
+ 
+}
+.AddForm-Container input{
+    border-radius: 3px;
+    background-color: bisque;
+}
+
+
+.Name-form{
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+.ID-form{
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+.Price-form{
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+.Quantity-form{
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+input[type="text"]{
+    font-size: 20px;
+    margin-left: 15px;
+    max-width: 150px;
+    padding-left: 5px;
+    background-color: bisque;
+    color: black;
+}
+
+input[type="number"]{
+    font-size: 20px;
+    margin-left: 15px;
+    max-width: 150px;
+    padding-left: 5px;
+    background-color: bisque;
+    color: black;
+}
+
+.submit-btn{
+    font-size: 1.3rem;
+    background-color: hsl(120, 79%, 56%);
+}
+
+.submit-btn:hover{
+    font-size: 1.3rem;
+    background-color: hsl(120, 79%, 36%);
+
+}
+
+.Container-btns{
+    align-items: center;
+    margin-left: 5rem;
+    margin-right: 5rem;
+    border: 2px solid black;
+    background-color: white;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+button{
+    font-size: 1rem;
+    background-color: hsl(225, 73%, 78%);
+    margin-right: 5px;
+    margin-left: 5px;
+    border-style: none;
+    border-radius: 5px;
+    border-width: 3px;
+    cursor: pointer;
+    transition: background-color 0.5s ease;
+}
+
+button:hover{
+    background-color: hsl(225, 73%, 88%);;
+}
+
+li{
+    list-style: none;
+}
+   
