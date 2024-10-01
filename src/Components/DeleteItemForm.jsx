@@ -9,23 +9,20 @@ const DeleteItemForm = ({ items, setItems }) => {
   const handleDeleteItem = (e) => {
     e.preventDefault();
 
-    // Find the item by ID
+   
     const itemToDelete = items.find((item) => item.id === idToDelete);
 
     if (itemToDelete) {
-      // Remove the item from the items list
+
       const updatedItems = items.filter((item) => item.id !== idToDelete);
       setItems(updatedItems);
 
-      // Set the name of the deleted item for display
       setDeletedItemName(itemToDelete.name);
       setErrorMessage('');
     } else {
       setDeletedItemName('');
       setErrorMessage('Item not found');
     }
-
-    // Reset the input field
     setIdToDelete('');
   };
 

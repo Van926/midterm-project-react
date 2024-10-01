@@ -64,10 +64,5 @@ const SearchItem = ({ items }) => {
   );
 };
 
-/*<h3>Item Found:</h3>
-<p>ID: {foundItem.id} {("")}
-Name: {foundItem.name} {("")}
-Category: {foundItem.category} {("")}
-Quantity: {foundItem.quantity} {("")}
-Price: ${foundItem.price} {("")}</p>*/
+
 export default SearchItem;

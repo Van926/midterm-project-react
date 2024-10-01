@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import './Styles.css';
-import AddItemForm from './AddItemForm'; // Import AddItemForm component
-import UpdateItemForm from './UpdateItemForm'; // Import UpdateItemForm component
-import DeleteItemForm from './DeleteItemForm'; // Import DeleteItemForm component
+import AddItemForm from './AddItemForm';
+import UpdateItemForm from './UpdateItemForm';
+import DeleteItemForm from './DeleteItemForm';
 import SearchItem from './SearchItem';
+import LowStockItems from './LowStockItem';
 
 const InventoryManagementSystem = () => {
   const [items, setItems] = useState([])
@@ -27,6 +28,8 @@ const InventoryManagementSystem = () => {
   const [displayAll, setDisplayAll] = useState(false)
   const [displayCategory, setDisplaybyCategory] = useState(false)
   const [displaySearchItem, setDisplaySearchItem] = useState(false)
+  const [displayLowStock, setDisplayLowStock] = useState(false)
+  const [displaySort, setDisplaySort] = useState(false)
 
   const AddItem = (e) => {
     e.preventDefault();
@@ -64,30 +67,44 @@ const InventoryManagementSystem = () => {
 
   const UpdateItem = (e) => {
     e.preventDefault();
-
+    if (!isValidInput(quantity) && !isValidInput(price)) {
+      setErrorMessage('Error: Quantity and Price must be numbers greater than 0.');
+      setMessage('');
+      return;
+    }
     const existingItemIndex = items.findIndex((item) => item.id === id);
 
     if (existingItemIndex !== -1) {
+
+      const existingItem = items[existingItemIndex];
+
+      const oldPrice = existingItem.price;
+      const oldQuantity = existingItem.quantity;
+  
       const updatedItem = {
         id,
-        name: name || items[existingItemIndex].name,
-        quantity: quantity || items[existingItemIndex].quantity,
-        price: price || items[existingItemIndex].price,
-        category: category || items[existingItemIndex].category,
+        name: name || existingItem.name,
+        quantity: quantity ? Number(quantity) : existingItem.quantity,
+        price: price ? Number(price) : existingItem.price,
+        category: category || existingItem.category,
       };
-      if (!isValidInput(quantity) || !isValidInput(price)) {
-        setErrorMessage('Error: Quantity and Price must be numbers greater than 0.');
-        setMessage('');
-        return;
-      }
-      
+  
 
       const updatedItems = [...items];
       updatedItems[existingItemIndex] = updatedItem;
       setItems(updatedItems);
 
-      setMessage(`Item with ID ${id} has been updated successfully!`);
-      setErrorMessage('');
+      if(oldPrice!=updatedItem.price){
+        setMessage(`Item with ID ${id} updated successfully! 
+        Price changed from $${oldPrice} to $${updatedItem.price}. 
+        .`);
+      }
+      if(oldQuantity!=updatedItem.quantity){
+        setMessage(`Item with ID ${id} updated successfully! 
+        Quantity changed from ${oldQuantity} to ${updatedItem.quantity}.`);
+      }
+      
+      setErrorMessage(''); 
 
       setId('');
       setName('');
@@ -107,6 +124,8 @@ const InventoryManagementSystem = () => {
     setDisplayAll(false)
     setDisplaybyCategory(false);
     setDisplaySearchItem(false);
+    setDisplayLowStock(false);
+    setDisplaySort(false);
     setErrorMessage('');
     setMessage('');
   };
@@ -118,6 +137,8 @@ const InventoryManagementSystem = () => {
     setDisplayAll(false)
     setDisplaybyCategory(false);
     setDisplaySearchItem(false);
+    setDisplayLowStock(false);
+    setDisplaySort(false);
     setErrorMessage('');
     setMessage('');
   };
@@ -128,19 +149,11 @@ const InventoryManagementSystem = () => {
     setDisplayAll(false)
     setDisplaybyCategory(false);
     setDisplaySearchItem(false);
+    setDisplayLowStock(false);
+    setDisplaySort(false);
     setErrorMessage('')
     setMessage('')
   }
-
-  const handleOtherButtonClick = () => {
-    setShowAddForm(false);
-    setShowUpdateForm(false);
-    setDisplayAll(false);
-    setDisplaybyCategory(false)
-    setDisplaySearchItem(false);
-    setErrorMessage('');
-    setMessage('');
-  };
 
   const handleDisplaybyCategory =() =>{
     setShowAddForm(false);
@@ -149,6 +162,8 @@ const InventoryManagementSystem = () => {
     setShowDeleteForm(false);
     setDisplaybyCategory(true);
     setDisplaySearchItem(false);
+    setDisplayLowStock(false);
+    setDisplaySort(false);
     setErrorMessage('');
     setMessage('');
 
@@ -161,6 +176,10 @@ const InventoryManagementSystem = () => {
     setShowAddForm(false);
     setShowUpdateForm(false);
     setShowDeleteForm(false);
+    setDisplayLowStock(false);
+    setDisplaySort(false);
+    setErrorMessage('');
+    setMessage('');
   }
 
   const handleDisplayAllItems = () =>{
@@ -170,6 +189,32 @@ const InventoryManagementSystem = () => {
     setShowDeleteForm(false);
     setDisplaybyCategory(false);
     setDisplaySearchItem(false);
+    setDisplayLowStock(false);
+    setDisplaySort(false);
+    setErrorMessage('');
+    setMessage('');
+  }
+  const handleDisplayLowStock = () =>{
+    setShowAddForm(false);
+    setShowUpdateForm(false);
+    setDisplayAll(false);
+    setShowDeleteForm(false);
+    setDisplaybyCategory(false);
+    setDisplaySearchItem(false);
+    setDisplaySort(false);
+    setDisplayLowStock(true);
+    setErrorMessage('');
+    setMessage('');
+  }
+  const handleSortItems = () =>{
+    setShowAddForm(false);
+    setShowUpdateForm(false);
+    setDisplayAll(false);
+    setShowDeleteForm(false);
+    setDisplaybyCategory(false);
+    setDisplaySearchItem(false);
+    setDisplayLowStock(false);
+    setDisplaySort(true);
     setErrorMessage('');
     setMessage('');
   }
@@ -187,8 +232,8 @@ const InventoryManagementSystem = () => {
         <button onClick={handleDisplaybyCategory}>Display Items by Category</button>
         <button onClick={handleDisplayAllItems}>Display All Items</button>
         <button onClick={handleSearchItem}>Search Item</button>
-        <button onClick={handleOtherButtonClick}>Sort Items</button>
-        <button onClick={handleOtherButtonClick}>Display Low Stock Items</button>
+        <button onClick={handleSortItems}>Sort Items</button>
+        <button onClick={handleDisplayLowStock}>Display Low Stock Items</button>
       </div>
 
       {showAddForm && (
@@ -261,7 +306,7 @@ const InventoryManagementSystem = () => {
                         <td>{item.name}</td>
                         <td>{item.category}</td>
                         <td>{item.quantity}</td>
-                        <td>${item.price.toFixed(2)}</td>
+                        <td>${item.price}</td>
                       </tr>
               ))}
                   </tbody>
@@ -295,13 +340,20 @@ const InventoryManagementSystem = () => {
               <td>{item.name}</td>
               <td>{item.category}</td>
               <td>{item.quantity}</td>
-              <td>${item.price.toFixed(2)}</td>
+              <td>${item.price}</td>
             </tr>
           ))}
         </tbody>
       </table>
       </div>)}
+      
+      {displayLowStock && (
+        <LowStockItems items={items}/>
+      )}
+
     </div>
+
+    
   );
 };
 

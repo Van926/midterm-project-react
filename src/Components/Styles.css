@@ -117,10 +117,7 @@ button:hover{
     background-color: hsl(225, 73%, 88%);;
 }
 
-li{
-    list-style: none;
-}
-   
+
 .Itemlist-Container{
     border: 3px solid black;
     margin-top: 50px;
@@ -159,15 +156,3 @@ table {
   
 
    
-.Items li{
-    display: flex;
-    align-items: center;
-    justify-items: center;
-     background-color: beige;
-     border: 2px solid black;
-     margin-top: 5px;
-     margin-bottom:5px ;
-     margin-left: 5px;
-     margin-right: 25px;
-     padding: 5px;
-}
