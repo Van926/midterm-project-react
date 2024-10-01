@@ -19,16 +19,17 @@ h1{
     margin-right: 500px;
     padding-top: 10px;
     padding-bottom: 10px;
+    border: 3px solid black;
 }
-.AddForm-Container label{
-    font-size: 20px;
- 
-}
+
 .AddForm-Container input{
     border-radius: 3px;
     background-color: bisque;
 }
-
+input::placeholder {
+    color: rgb(0, 0, 0); 
+    
+}
 
 .Name-form{
     margin-top: 15px;
@@ -43,6 +44,10 @@ h1{
     margin-bottom: 15px;
 }
 .Quantity-form{
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+.Category-form{
     margin-top: 15px;
     margin-bottom: 15px;
 }
