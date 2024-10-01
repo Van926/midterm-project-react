@@ -9,7 +9,7 @@ h1{
     font-size: 40px;
 }
 
-.AddForm-Container{
+.Form-Container{
     margin-top: 50px;
     align-items: center;
     justify-content: center;
@@ -22,34 +22,40 @@ h1{
     border: 3px solid black;
 }
 
-.AddForm-Container input{
+.Form-Container input{
     border-radius: 3px;
     background-color: bisque;
 }
+
+.Form-Container p{
+    margin: 0;
+}
 input::placeholder {
-    color: rgb(0, 0, 0); 
+    color: rgb(161, 156, 156); 
     
 }
 
+
+
 .Name-form{
-    margin-top: 15px;
-    margin-bottom: 15px;
+    margin-top: 5px;
+    margin-bottom: 5px;
 }
 .ID-form{
-    margin-top: 15px;
-    margin-bottom: 15px;
+    margin-top: 5px;
+    margin-bottom: 5px;
 }
 .Price-form{
-    margin-top: 15px;
-    margin-bottom: 15px;
+    margin-top: 5px;
+    margin-bottom: 5px;
 }
 .Quantity-form{
-    margin-top: 15px;
-    margin-bottom: 15px;
+    margin-top:5px;
+    margin-bottom:5px;
 }
 .Category-form{
-    margin-top: 15px;
-    margin-bottom: 15px;
+    margin-top: 5px;
+    margin-bottom: 5px;
 }
 
 input[type="text"]{
@@ -72,6 +78,7 @@ input[type="number"]{
 
 .submit-btn{
     font-size: 1.3rem;
+    margin-top: 15px;
     background-color: hsl(120, 79%, 56%);
 }
 
@@ -111,3 +118,26 @@ li{
     list-style: none;
 }
    
+.Itemlist-Container{
+    border: 3px solid black;
+    margin-top: 100px;
+    margin-left: 250px;
+    margin-right: 250px;
+    background-color: blanchedalmond;
+
+}
+
+
+   
+.Items li{
+    display: flex;
+    align-items: center;
+    justify-items: center;
+     background-color: beige;
+     border: 2px solid black;
+     margin-top: 5px;
+     margin-bottom:5px ;
+     margin-left: 5px;
+     margin-right: 25px;
+     padding: 5px;
+}
