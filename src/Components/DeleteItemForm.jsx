@@ -1,50 +1,52 @@
+// DeleteItemForm.js
 import React, { useState } from 'react';
 
 const DeleteItemForm = ({ items, setItems }) => {
-  const [deleteId, setDeleteId] = useState(''); // ID for deleting item
+  const [idToDelete, setIdToDelete] = useState('');
+  const [deletedItemName, setDeletedItemName] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
-  const [message, setMessage] = useState('');
 
-  // Function to delete an item by ID
-  const DeleteItem = (e) => {
+  const handleDeleteItem = (e) => {
     e.preventDefault();
 
-    const existingItemIndex = items.findIndex((item) => item.id === deleteId);
+    // Find the item by ID
+    const itemToDelete = items.find((item) => item.id === idToDelete);
 
-    if (existingItemIndex !== -1) {
-      const updatedItems = items.filter((item) => item.id !== deleteId); // Remove item
+    if (itemToDelete) {
+      // Remove the item from the items list
+      const updatedItems = items.filter((item) => item.id !== idToDelete);
       setItems(updatedItems);
-      setMessage(`Item with ID ${deleteId} has been deleted successfully!`);
+
+      // Set the name of the deleted item for display
+      setDeletedItemName(itemToDelete.name);
       setErrorMessage('');
-      setDeleteId(''); // Clear input
     } else {
-      setErrorMessage(`Error: Item with ID ${deleteId} not found.`);
-      setMessage('');
+      setDeletedItemName('');
+      setErrorMessage('Item not found');
     }
+
+    // Reset the input field
+    setIdToDelete('');
   };
 
   return (
     <div className='Form-Container'>
       <h2>Delete Item</h2>
+      <form onSubmit={handleDeleteItem}>
+        <label>Item ID: </label>
+        <input
+          type='text'
+          value={idToDelete}
+          onChange={(e) => setIdToDelete(e.target.value)}
+          required
+        />
+        <button type='submit'>Delete</button>
+      </form>
 
       {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
-      {message && !errorMessage && <p style={{ color: 'green' }}>{message}</p>}
-
-      <form onSubmit={DeleteItem}>
-        <div className='ID-form'>
-          <label>Item ID: </label>
-          <input
-            type="text"
-            value={deleteId}
-            onChange={(e) => setDeleteId(e.target.value)}
-            required
-          />
-        </div>
-
-        <button className='submit-btn' type="submit">
-          Delete Item
-        </button>
-      </form>
+      {deletedItemName && !errorMessage && (
+        <p style={{ color: 'green' }}>Removed item {deletedItemName} from Inventory</p>
+      )}
     </div>
   );
 };

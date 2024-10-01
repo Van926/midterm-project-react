@@ -3,6 +3,7 @@ import './Styles.css';
 import AddItemForm from './AddItemForm'; // Import AddItemForm component
 import UpdateItemForm from './UpdateItemForm'; // Import UpdateItemForm component
 import DeleteItemForm from './DeleteItemForm'; // Import DeleteItemForm component
+import SearchItem from './SearchItem';
 
 const InventoryManagementSystem = () => {
   const [items, setItems] = useState([])
@@ -25,6 +26,7 @@ const InventoryManagementSystem = () => {
   const [showDeleteForm, setShowDeleteForm] = useState(false)
   const [displayAll, setDisplayAll] = useState(false)
   const [displayCategory, setDisplaybyCategory] = useState(false)
+  const [displaySearchItem, setDisplaySearchItem] = useState(false)
 
   const AddItem = (e) => {
     e.preventDefault();
@@ -103,6 +105,8 @@ const InventoryManagementSystem = () => {
     setShowUpdateForm(false);
     setShowDeleteForm(false)
     setDisplayAll(false)
+    setDisplaybyCategory(false);
+    setDisplaySearchItem(false);
     setErrorMessage('');
     setMessage('');
   };
@@ -112,6 +116,8 @@ const InventoryManagementSystem = () => {
     setShowUpdateForm(true);
     setShowDeleteForm(false);
     setDisplayAll(false)
+    setDisplaybyCategory(false);
+    setDisplaySearchItem(false);
     setErrorMessage('');
     setMessage('');
   };
@@ -120,6 +126,8 @@ const InventoryManagementSystem = () => {
     setShowUpdateForm(false);
     setShowDeleteForm(true)
     setDisplayAll(false)
+    setDisplaybyCategory(false);
+    setDisplaySearchItem(false);
     setErrorMessage('')
     setMessage('')
   }
@@ -129,6 +137,7 @@ const InventoryManagementSystem = () => {
     setShowUpdateForm(false);
     setDisplayAll(false);
     setDisplaybyCategory(false)
+    setDisplaySearchItem(false);
     setErrorMessage('');
     setMessage('');
   };
@@ -139,9 +148,19 @@ const InventoryManagementSystem = () => {
     setDisplayAll(false);
     setShowDeleteForm(false);
     setDisplaybyCategory(true);
+    setDisplaySearchItem(false);
     setErrorMessage('');
     setMessage('');
 
+  }
+
+  const handleSearchItem =() =>{
+    setDisplaySearchItem(true);
+    setDisplayAll(false);
+    setDisplaybyCategory(false);
+    setShowAddForm(false);
+    setShowUpdateForm(false);
+    setShowDeleteForm(false);
   }
 
   const handleDisplayAllItems = () =>{
@@ -149,11 +168,13 @@ const InventoryManagementSystem = () => {
     setShowUpdateForm(false);
     setDisplayAll(true);
     setShowDeleteForm(false);
+    setDisplaybyCategory(false);
+    setDisplaySearchItem(false);
     setErrorMessage('');
     setMessage('');
   }
   const handleCategory = (e) => {
-    setSelectedCategory(e.target.value); // Update selected category
+    setSelectedCategory(e.target.value);
   };
   return (
     <div>
@@ -165,7 +186,7 @@ const InventoryManagementSystem = () => {
         <button onClick={handleShowDeleteForm}>Remove Item</button>
         <button onClick={handleDisplaybyCategory}>Display Items by Category</button>
         <button onClick={handleDisplayAllItems}>Display All Items</button>
-        <button onClick={handleOtherButtonClick}>Search Item</button>
+        <button onClick={handleSearchItem}>Search Item</button>
         <button onClick={handleOtherButtonClick}>Sort Items</button>
         <button onClick={handleOtherButtonClick}>Display Low Stock Items</button>
       </div>
@@ -202,6 +223,12 @@ const InventoryManagementSystem = () => {
 
       }
 
+      {displaySearchItem && (
+        <SearchItem items={items} />
+      )
+      }
+      
+
       {displayCategory && (
         <div>
           <div className='Form-Container'>
@@ -212,39 +239,68 @@ const InventoryManagementSystem = () => {
               <option value="Entertainment">Entertainment</option>
             </select>
           </div>
-            <div className='Itemlist-Container'>
-              <h2>Items in {selectedCategory} Category</h2>
-              <div className='Items'>
-                <ul>
+          <div className='Itemlist-Container'>
+            <h2>Items in {selectedCategory} Category</h2>
+            <div className='Items'>
+              <table>
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Name</th>
+                  <th>Category</th>
+                  <th>Quantity</th>
+                  <th>Price</th>
+                </tr>
+              </thead>
+                <tbody>
                   {items
                     .filter(item => item.category === selectedCategory) // Filter items by selected category
                     .map((item) => (
-                      <li key={item.id}>
-                        ID: {item.id}  Name: {item.name} - Category: {item.category}, Quantity: {item.quantity}, Price: ${item.price}
-                      </li>
-                    ))}
-                </ul>
+                      <tr key={item.id}>
+                        <td>{item.id}</td>
+                        <td>{item.name}</td>
+                        <td>{item.category}</td>
+                        <td>{item.quantity}</td>
+                        <td>${item.price.toFixed(2)}</td>
+                      </tr>
+              ))}
+                  </tbody>
+                </table>
               </div>
-            </div>
-        </div>
-      )}
+              </div>
+
+              </div>
+             )}
     
 
 
 
-    {displayAll &&
+    {displayAll &&(
       <div className='Itemlist-Container'>
         <h2>Items List</h2>
-        <div className='Items'>
-          <ul>
-            {items.map((item) => (
-              <li key={item.id}>
-              ID: {item.id}  Name: {item.name} - Category: {item.category}, Quantity: {item.quantity}, Price: ${item.price}
-              </li>
-            ))}
-          </ul>
-       </div>
-      </div>}
+        <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Category</th>
+            <th>Quantity</th>
+            <th>Price</th>
+          </tr>
+        </thead>
+        <tbody>
+          {items.map((item) => (
+            <tr key={item.id}>
+              <td>{item.id}</td>
+              <td>{item.name}</td>
+              <td>{item.category}</td>
+              <td>{item.quantity}</td>
+              <td>${item.price.toFixed(2)}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+      </div>)}
     </div>
   );
 };
