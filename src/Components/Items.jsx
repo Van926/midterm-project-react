@@ -5,23 +5,26 @@ import UpdateItemForm from './UpdateItemForm'; // Import UpdateItemForm componen
 import DeleteItemForm from './DeleteItemForm'; // Import DeleteItemForm component
 
 const InventoryManagementSystem = () => {
-  const [items, setItems] = useState([]);
+  const [items, setItems] = useState([])
 
-  const [id, setId] = useState('');
-  const [name, setName] = useState('');
-  const [quantity, setQuantity] = useState('');
-  const [price, setPrice] = useState('');
-  const [category, setCategory] = useState('Clothing');
-  const [errorMessage, setErrorMessage] = useState('');
-  const [message, setMessage] = useState('');
+  const [id, setId] = useState('')
+  const [name, setName] = useState('')
+  const [quantity, setQuantity] = useState('')
+  const [price, setPrice] = useState('')
+  const [category, setCategory] = useState('Clothing')
+  const [errorMessage, setErrorMessage] = useState('')
+  const [message, setMessage] = useState('')
+  const [selectedCategory, setSelectedCategory] = useState('Clothing')
 
   const isValidInput = (value) => {
     return !isNaN(value) && Number(value) > 0;
   };
 
-  const [showAddForm, setShowAddForm] = useState(false);
-  const [showUpdateForm, setShowUpdateForm] = useState(false);
+  const [showAddForm, setShowAddForm] = useState(false)
+  const [showUpdateForm, setShowUpdateForm] = useState(false)
   const [showDeleteForm, setShowDeleteForm] = useState(false)
+  const [displayAll, setDisplayAll] = useState(false)
+  const [displayCategory, setDisplaybyCategory] = useState(false)
 
   const AddItem = (e) => {
     e.preventDefault();
@@ -31,7 +34,7 @@ const InventoryManagementSystem = () => {
       setMessage('');
       return;
     }
-    const existingItem = items.find((item) => item.id === id);
+    const existingItem = items.find((item) => item.id === id)
 
     if (existingItem) {
       setErrorMessage('Error: Item ID is already in use.');
@@ -99,6 +102,7 @@ const InventoryManagementSystem = () => {
     setShowAddForm(true);
     setShowUpdateForm(false);
     setShowDeleteForm(false)
+    setDisplayAll(false)
     setErrorMessage('');
     setMessage('');
   };
@@ -107,13 +111,15 @@ const InventoryManagementSystem = () => {
     setShowAddForm(false);
     setShowUpdateForm(true);
     setShowDeleteForm(false);
+    setDisplayAll(false)
     setErrorMessage('');
     setMessage('');
   };
-  const handlShowDeleteForm = () =>{
+  const handleShowDeleteForm = () =>{
     setShowAddForm(false);
     setShowUpdateForm(false);
     setShowDeleteForm(true)
+    setDisplayAll(false)
     setErrorMessage('')
     setMessage('')
   }
@@ -121,20 +127,44 @@ const InventoryManagementSystem = () => {
   const handleOtherButtonClick = () => {
     setShowAddForm(false);
     setShowUpdateForm(false);
+    setDisplayAll(false);
+    setDisplaybyCategory(false)
     setErrorMessage('');
     setMessage('');
   };
 
+  const handleDisplaybyCategory =() =>{
+    setShowAddForm(false);
+    setShowUpdateForm(false);
+    setDisplayAll(false);
+    setShowDeleteForm(false);
+    setDisplaybyCategory(true);
+    setErrorMessage('');
+    setMessage('');
+
+  }
+
+  const handleDisplayAllItems = () =>{
+    setShowAddForm(false);
+    setShowUpdateForm(false);
+    setDisplayAll(true);
+    setShowDeleteForm(false);
+    setErrorMessage('');
+    setMessage('');
+  }
+  const handleCategory = (e) => {
+    setSelectedCategory(e.target.value); // Update selected category
+  };
   return (
     <div>
-      <h1>Item Management System</h1>
+      <h1>Inventory Management System</h1>
 
       <div className='Container-btns'>
         <button onClick={handleShowAddForm}>Add Item</button>
         <button onClick={handleShowUpdateForm}>Update Item</button>
-        <button onClick={handlShowDeleteForm}>Remove Item</button>
-        <button onClick={handleOtherButtonClick}>Display Items by Category</button>
-        <button onClick={handleOtherButtonClick}>Display All Items</button>
+        <button onClick={handleShowDeleteForm}>Remove Item</button>
+        <button onClick={handleDisplaybyCategory}>Display Items by Category</button>
+        <button onClick={handleDisplayAllItems}>Display All Items</button>
         <button onClick={handleOtherButtonClick}>Search Item</button>
         <button onClick={handleOtherButtonClick}>Sort Items</button>
         <button onClick={handleOtherButtonClick}>Display Low Stock Items</button>
@@ -171,6 +201,38 @@ const InventoryManagementSystem = () => {
       )
 
       }
+
+      {displayCategory && (
+        <div>
+          <div className='Form-Container'>
+            <label>Select Category: </label>
+            <select value={selectedCategory} onChange={handleCategory}>
+              <option value="Clothing">Clothing</option>
+              <option value="Electronics">Electronics</option>
+              <option value="Entertainment">Entertainment</option>
+            </select>
+          </div>
+            <div className='Itemlist-Container'>
+              <h2>Items in {selectedCategory} Category</h2>
+              <div className='Items'>
+                <ul>
+                  {items
+                    .filter(item => item.category === selectedCategory) // Filter items by selected category
+                    .map((item) => (
+                      <li key={item.id}>
+                        ID: {item.id}  Name: {item.name} - Category: {item.category}, Quantity: {item.quantity}, Price: ${item.price}
+                      </li>
+                    ))}
+                </ul>
+              </div>
+            </div>
+        </div>
+      )}
+    
+
+
+
+    {displayAll &&
       <div className='Itemlist-Container'>
         <h2>Items List</h2>
         <div className='Items'>
@@ -182,7 +244,7 @@ const InventoryManagementSystem = () => {
             ))}
           </ul>
        </div>
-      </div>
+      </div>}
     </div>
   );
 };

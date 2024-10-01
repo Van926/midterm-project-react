@@ -16,13 +16,11 @@ const UpdateItemForm = ({ id, setId, name, setName, price, setPrice, quantity, s
       {message && !errorMessage && <p style={{ color: 'green' }}>{message}</p>}
 
       <form onSubmit={UpdateItem}>
-        {/* Ask for Item ID */}
         <div className='ID-form'>
           <label>Item ID: </label>
           <input type="text" value={id} onChange={(e) => setId(e.target.value)} required />
         </div>
 
-        {/* Dropdown or radio buttons to select field to update */}
         <div className='FieldToUpdate-form'>
           <label>Field to Update: </label>
           <select value={fieldToUpdate} onChange={handleFieldChange} required>
@@ -34,7 +32,6 @@ const UpdateItemForm = ({ id, setId, name, setName, price, setPrice, quantity, s
           </select>
         </div>
 
-        {/* Conditionally show the input based on selected field */}
         {fieldToUpdate === 'name' && (
           <div className='Name-form'>
             <label>New Name: </label>
