@@ -1,7 +1,7 @@
 body{
     align-items: center;
     justify-content: center;
-    background-color: rgb(225, 188, 143);
+    background-color: rgb(154, 154, 154);
     font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
@@ -16,20 +16,29 @@ h1{
     justify-content: center;
     margin-bottom: 30px;
     background-color: rgb(178, 229, 229);
-    margin-left: 500PX;
-    margin-right: 500px;
+    margin-left: 450PX;
+    margin-right: 450px;
     padding-top: 10px;
-    padding-bottom: 10px;
+    padding-bottom: 20px;
     border: 3px solid black;
+}
+
+.No-Items{
+    font-weight: bold;
+    font-size: 20px;
+    color: rgb(226, 57, 57);
 }
 
 .Form-Container input{
     border-radius: 3px;
     background-color: bisque;
 }
-
+.Form-Container select{
+    align-items: center;
+}
 .Form-Container p{
     margin: 0;
+    margin-bottom: 3px;
 }
 input::placeholder {
     color: rgb(161, 156, 156); 
@@ -76,6 +85,14 @@ input[type="number"]{
     background-color: bisque;
     color: black;
 }
+select{
+    width: 150px;
+    background-color: rgb(85, 211, 129);
+    font-size: 15px;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
 
 .submit-btn{
     font-size: 1.3rem;

@@ -33,7 +33,7 @@ const AddItemForm = ({ id, setId, name, setName, price, setPrice, quantity,
         </div>
 
         <div className='Category-form'>
-          <label>Category: </label>
+          <p>Category</p>
           <select value={category} onChange={(e) => setCategory(e.target.value)}>
             <option value="Clothing">Clothing</option>
             <option value="Electronics">Electronics</option>

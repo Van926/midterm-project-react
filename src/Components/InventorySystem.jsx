@@ -5,6 +5,8 @@ import UpdateItemForm from './UpdateItemForm';
 import DeleteItemForm from './DeleteItemForm';
 import SearchItem from './SearchItem';
 import LowStockItems from './LowStockItem';
+import SortItems from './SortItems';
+import DisplayByCategory from './DisplayCategory';
 
 const InventoryManagementSystem = () => {
   const [items, setItems] = useState([])
@@ -234,7 +236,7 @@ const InventoryManagementSystem = () => {
         <button onClick={handleSearchItem}>Search Item</button>
         <button onClick={handleSortItems}>Sort Items</button>
         <button onClick={handleDisplayLowStock}>Display Low Stock Items</button>
-      </div>
+      </div> 
 
       {showAddForm && (
         <AddItemForm
@@ -273,84 +275,62 @@ const InventoryManagementSystem = () => {
       )
       }
       
+      {displayLowStock && 
+        <LowStockItems items={items}/>
+      }
 
-      {displayCategory && (
+      {displaySort && 
+      <SortItems items={items} />}
+
+        {/* Display Items by Category */}
+        {displayCategory && (
         <div>
           <div className='Form-Container'>
-            <label>Select Category: </label>
+            <h2>Display By Category</h2>
+            <label>Select Category:</label>
             <select value={selectedCategory} onChange={handleCategory}>
               <option value="Clothing">Clothing</option>
               <option value="Electronics">Electronics</option>
               <option value="Entertainment">Entertainment</option>
             </select>
           </div>
-          <div className='Itemlist-Container'>
-            <h2>Items in {selectedCategory} Category</h2>
-            <div className='Items'>
-              <table>
-              <thead>
-                <tr>
-                  <th>ID</th>
-                  <th>Name</th>
-                  <th>Category</th>
-                  <th>Quantity</th>
-                  <th>Price</th>
-                </tr>
-              </thead>
-                <tbody>
-                  {items
-                    .filter(item => item.category === selectedCategory) // Filter items by selected category
-                    .map((item) => (
-                      <tr key={item.id}>
-                        <td>{item.id}</td>
-                        <td>{item.name}</td>
-                        <td>{item.category}</td>
-                        <td>{item.quantity}</td>
-                        <td>${item.price}</td>
-                      </tr>
-              ))}
-                  </tbody>
-                </table>
-              </div>
-              </div>
-
-              </div>
-             )}
-    
-
+          <DisplayByCategory items={items} selectedCategory={selectedCategory} />
+        </div>
+      )}
 
 
     {displayAll &&(
-      <div className='Itemlist-Container'>
-        <h2>Items List</h2>
-        <table>
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Category</th>
-            <th>Quantity</th>
-            <th>Price</th>
-          </tr>
-        </thead>
-        <tbody>
-          {items.map((item) => (
-            <tr key={item.id}>
-              <td>{item.id}</td>
-              <td>{item.name}</td>
-              <td>{item.category}</td>
-              <td>{item.quantity}</td>
-              <td>${item.price}</td>
+        <div className='Itemlist-Container'>
+          <h2>Displaying All Items</h2>
+          {items.length === 0 ? (
+            <p className='No-Items'> No Items yet go add an Item</p>
+          ) : (
+          <table>
+            <thead>
+            <tr>
+              <th>ID</th>
+              <th>Name</th>
+              <th>Category</th>
+              <th>Quantity</th>
+              <th>Price</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
-      </div>)}
-      
-      {displayLowStock && (
-        <LowStockItems items={items}/>
-      )}
-
+            </thead>
+              <tbody>
+                {items.map((item) => (
+                  <tr key={item.id}>
+                    <td>{item.id}</td>
+                    <td>{item.name}</td>
+                    <td>{item.category}</td>
+                    <td>{item.quantity}</td>
+                    <td>${item.price}</td>
+            </tr>
+             ))}
+              </tbody>
+          </table>
+          )}
+      </div>
+    )}
+     
     </div>
 
     

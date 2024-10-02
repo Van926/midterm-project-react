@@ -1,4 +1,4 @@
-import InventoryManagementSystem from './Components/Items'
+import InventoryManagementSystem from './Components/InventorySystem'
 import './App.css';
 
 function App() {
