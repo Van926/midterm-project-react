@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 const SortItems = ({ items }) => {
   const [sortBy, setSortBy] = useState('quantity');
-  const [order, setOrder] = useState('asc');
+  const [order, setOrder] = useState('ascending');
 
   // Function to handle the sorting logic
   const sortedItems = [...items].sort((a, b) => {

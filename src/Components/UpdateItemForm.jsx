@@ -3,9 +3,23 @@ import React, { useState } from 'react';
 const UpdateItemForm = ({ id, setId,price, setPrice, quantity, setQuantity,UpdateItem, errorMessage, message }) => {
   const [fieldToUpdate, setFieldToUpdate] = useState(''); 
 
+  
   const handleFieldChange = (e) => {
-    setFieldToUpdate(e.target.value);
+    const selectedField = e.target.value;
+    setFieldToUpdate(selectedField);
+    if(selectedField === 'price'){
+      setQuantity('')
+    }else if (selectedField === 'quantity'){
+      setPrice('')
+    }
+
+
+
   };
+  
+  
+
+
 
   return (
     <div className='Form-Container'>
