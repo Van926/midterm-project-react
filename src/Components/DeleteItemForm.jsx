@@ -27,7 +27,7 @@ const DeleteItemForm = ({ items, setItems }) => {
   };
 
   return (
-    <div className='Form-Container'>
+    <div className='Form-Container scale-up'>
       <h2>Delete Item</h2>
       <form onSubmit={handleDeleteItem}>
         <label>Item ID: </label>
@@ -37,7 +37,7 @@ const DeleteItemForm = ({ items, setItems }) => {
           onChange={(e) => setIdToDelete(e.target.value)}
           required
         />
-        <button type='submit'>Delete</button>
+        <button className='Delete-btn' type='submit'>Delete</button>
       </form>
 
       {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}

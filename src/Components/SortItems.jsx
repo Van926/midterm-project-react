@@ -4,7 +4,7 @@ const SortItems = ({ items }) => {
   const [sortBy, setSortBy] = useState('quantity');
   const [order, setOrder] = useState('ascending');
 
-  // Function to handle the sorting logic
+  
   const sortedItems = [...items].sort((a, b) => {
     if (sortBy === 'quantity') {
       return order === 'ascending' ? a.quantity - b.quantity : b.quantity - a.quantity;
@@ -16,7 +16,7 @@ const SortItems = ({ items }) => {
 
   return (
     <div>
-        <div className='Form-Container'>
+        <div className='Form-Container scale-up'>
         <h2>Sorting items by {sortBy} in {order} order</h2>
         
             <div className='Sort-Options'>
@@ -34,7 +34,7 @@ const SortItems = ({ items }) => {
             </div>
         </div>
           
-            <div className='Itemlist-Container'>
+            <div className='Itemlist-Container scale-up'>
               <h2>Item List</h2>
 
               {sortedItems.length === 0 ? (

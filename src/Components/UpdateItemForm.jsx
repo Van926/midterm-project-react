@@ -22,7 +22,7 @@ const UpdateItemForm = ({ id, setId,price, setPrice, quantity, setQuantity,Updat
 
 
   return (
-    <div className='Form-Container'>
+    <div className='Form-Container scale-up'>
       <h2>Update Item</h2>
 
       {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}

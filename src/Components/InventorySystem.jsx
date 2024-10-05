@@ -225,19 +225,20 @@ const InventoryManagementSystem = () => {
   };
   return (
     <div>
-      <h1>Inventory Management System</h1>
-
-      <div className='Container-btns'>
-        <button onClick={handleShowAddForm}>Add Item</button>
-        <button onClick={handleShowUpdateForm}>Update Item</button>
-        <button onClick={handleShowDeleteForm}>Remove Item</button>
-        <button onClick={handleDisplaybyCategory}>Display Items by Category</button>
-        <button onClick={handleDisplayAllItems}>Display All Items</button>
-        <button onClick={handleSearchItem}>Search Item</button>
-        <button onClick={handleSortItems}>Sort Items</button>
-        <button onClick={handleDisplayLowStock}>Display Low Stock Items</button>
-      </div> 
-
+      <div className='Header-Container'>
+       <h1>INVENTORY MANAGEMENT SYSTEM</h1>
+      
+        <div className='Container-btns'>
+          <button className='Add-btn' onClick={handleShowAddForm}>Add Item</button>
+          <button className='Update-btn' onClick={handleShowUpdateForm}>Update Item</button>
+          <button className='Remove-btn' onClick={handleShowDeleteForm}>Remove Item</button>
+          <button className='Display-btn' onClick={handleDisplaybyCategory}>Display Items by Category</button>
+          <button className='Display-btn' onClick={handleDisplayAllItems}>Display All Items</button>
+          <button className='Search-btn' onClick={handleSearchItem}>Search Item</button>
+          <button className='Sort-btn' onClick={handleSortItems}>Sort Items</button>
+          <button className='DisplayLow-btn' onClick={handleDisplayLowStock}>Display Low Stock Items</button>
+        </div> 
+      </div>
       {showAddForm && (
         <AddItemForm
           id={id} setId={setId}
@@ -282,10 +283,10 @@ const InventoryManagementSystem = () => {
       {displaySort && 
       <SortItems items={items} />}
 
-        {/* Display Items by Category */}
+      
         {displayCategory && (
         <div>
-          <div className='Form-Container'>
+          <div className='Form-Container scale-up'>
             <h2>Display By Category</h2>
             <label>Select Category:</label>
             <select value={selectedCategory} onChange={handleCategory}>
@@ -300,7 +301,7 @@ const InventoryManagementSystem = () => {
 
 
     {displayAll &&(
-        <div className='Itemlist-Container'>
+        <div className='Itemlist-Container scale-up'>
           <h2>Displaying All Items</h2>
           {items.length === 0 ? (
             <p className='No-Items'> No Items yet go add an Item</p>
@@ -330,7 +331,7 @@ const InventoryManagementSystem = () => {
           )}
       </div>
     )}
-     
+    
     </div>
 
     

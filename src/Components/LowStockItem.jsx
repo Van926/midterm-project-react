@@ -6,10 +6,10 @@ const LowStockItems = ({ items }) => {
 
   return (
     <div>
-      <div className='Form-Container'>
+      <div className='Form-Container scale-up'>
         <h2 >Low Stock Items (Quantity 5 or below)</h2>
       </div>
-          <div className='Itemlist-Container'>
+          <div className='Itemlist-Container scale-up'>
             <h2>Items List</h2>
             {lowStockItems.length === 0 ? (
             <p className='No-Items'>No low stock items available.</p>

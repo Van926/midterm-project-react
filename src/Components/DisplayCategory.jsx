@@ -4,7 +4,7 @@ const DisplayByCategory = ({ items, selectedCategory }) => {
   const filteredItems = items.filter(item => item.category === selectedCategory);
 
   return (
-        <div className='Itemlist-Container'>
+        <div className='Itemlist-Container scale-up'>
         <h2>Items in {selectedCategory} Category</h2>
         
         {filteredItems.length === 0 ? (

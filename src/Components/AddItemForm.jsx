@@ -5,7 +5,7 @@ const AddItemForm = ({ id, setId, name, setName, price, setPrice, quantity,
 
     
   return (
-    <div className='Form-Container'>
+    <div className='Form-Container scale-up'>
       <h2>Add Item</h2>
 
       {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}

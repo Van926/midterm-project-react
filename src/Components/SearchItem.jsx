@@ -1,4 +1,4 @@
-// SearchItemById.js
+
 import React, { useState } from 'react';
 
 const SearchItem = ({ items }) => {
@@ -7,7 +7,7 @@ const SearchItem = ({ items }) => {
   const [errorMessage, setErrorMessage] = useState('');
 
   const handleSearch = (e) => {
-    e.preventDefault(); // Prevent form submission
+    e.preventDefault(); 
 
     const item = items.find((item) => item.id === searchId);
 
@@ -22,7 +22,7 @@ const SearchItem = ({ items }) => {
 
   return (
     <div>
-        <div className='Form-Container'>
+        <div className='Form-Container scale-up'>
         <h2>Search Item by ID</h2>
         <form onSubmit={handleSearch}>
             <label>Item ID: </label>
@@ -32,7 +32,7 @@ const SearchItem = ({ items }) => {
             onChange={(e) => setSearchId(e.target.value)}
             required
             />
-            <button className='search-btn' type='submit'>Search</button>
+            <button className='Search-btn' type='submit'>Search</button>
         </form>
         </div>
         {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}

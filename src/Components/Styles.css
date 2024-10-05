@@ -1,13 +1,20 @@
-body{
+body,html{
     align-items: center;
     justify-content: center;
-    background-color: rgb(154, 154, 154);
+    background-color: rgb(89, 87, 87);
     font-family: Georgia, 'Times New Roman', Times, serif;
+    margin: 0;
+
 }
 
-h1{
-    font-size: 40px;
-    margin-top: 30px;
+
+.Header-Container{
+    width: 100%;
+    background-color: #1c4f20;
+    padding: 10px 0;
+    box-sizing: border-box;
+    margin-top: 0px;
+    color: white;
 }
 
 .Form-Container{
@@ -15,7 +22,7 @@ h1{
     align-items: center;
     justify-content: center;
     margin-bottom: 30px;
-    background-color: rgb(178, 229, 229);
+    background-color: rgb(54, 208, 208);
     margin-left: 450PX;
     margin-right: 450px;
     padding-top: 10px;
@@ -107,14 +114,13 @@ select{
 }
 
 .Container-btns{
-    margin-top: 60px;
     align-items: center;
-    margin-left: 8rem;
-    margin-right: 8rem;
     border: 2px solid black;
-    background-color: white;
+    background-color: rgb(199, 76, 42);
     padding-top: 10px;
     padding-bottom: 10px;
+    margin-bottom: -10px;
+    
 }
 
 button{
@@ -128,19 +134,79 @@ button{
     border-width: 3px;
     cursor: pointer;
     transition: background-color 0.5s ease;
+    transition-property: transform;
+    transition-duration: 0.5s;
+    transition-timing-function: ease;
+    transition-delay: 0.2s;
+    border: 2px black solid;
 }
 
 button:hover{
-    background-color: hsl(225, 73%, 88%);;
+    transform: translateY(-2px);
 }
 
+.Add-btn{
+    background-color: hsl(90, 100%, 50%);
+}
+.Add-btn:hover{
+    background-color: hsl(90, 100%, 63%);
+
+}
+
+.Update-btn{
+    background-color: hsl(240, 100%, 79%);
+}
+
+.Update-btn:hover{
+    background-color: hsl(240, 100%, 89%);
+}
+
+.Remove-btn{
+    background-color: hsl(0, 100%, 50%);
+}
+
+.Remove-btn:hover{
+    background-color: hsl(0, 100%, 65%);
+}
+
+.Display-btn{
+    background-color: hsl(60, 98%, 45%) ;
+}
+
+.Display-btn:hover{
+    background-color: hsl(60, 73%, 65%);
+}
+
+.Search-btn{
+    background-color: hsl(200, 100%, 50%);
+}
+
+.Search-btn:hover{
+    background-color: hsl(200, 100%, 60%);
+}
+
+.Sort-btn{
+    background-color: hsl(38, 95%, 51%);
+}
+
+.Sort-btn:hover{
+    background-color: hsl(38, 95%, 64%);
+}
+
+.DisplayLow-btn{
+    background-color: hsl(190, 65%, 53%);
+}
+
+.DisplayLow-btn:hover{
+    background-color: hsl(190, 65%, 65%);
+}
 
 .Itemlist-Container{
     border: 3px solid black;
     margin-top: 50px;
     margin-left: 250px;
     margin-right: 250px;
-    background-color: blanchedalmond;
+    background-color: rgb(245, 163, 39);
 
 }
 
@@ -171,5 +237,35 @@ table {
     background-color: hwb(0 98% 21%);
   }
   
-
+/* CSS for fade-in animation */
+@keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px); /* Slide from below */
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0); /* Original position */
+    }
+  }
+  
+  .fade-in {
+    animation: fadeIn 0.5s ease-out;
+  }
+  
+  @keyframes scaleUp {
+    from {
+      opacity: 0;
+      transform: scale(0.9);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+  
+  .scale-up {
+    animation: scaleUp 0.2s ease-in;
+  }
+  
    
