@@ -1,5 +1,5 @@
 import InventoryManagementSystem from './Components/InventorySystem'
-import './App.css';
+
 
 function App() {
   return (
