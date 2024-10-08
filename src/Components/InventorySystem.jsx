@@ -283,7 +283,7 @@ const InventoryManagementSystem = () => {
       {displaySort && 
       <SortItems items={items} />}
 
-      
+                                                                                                                    
         {displayCategory && (
         <div>
           <div className='Form-Container scale-up'>
@@ -299,7 +299,7 @@ const InventoryManagementSystem = () => {
         </div>
       )}
 
-
+      
     {displayAll &&(
         <div className='Itemlist-Container scale-up'>
           <h2>Displaying All Items</h2>
