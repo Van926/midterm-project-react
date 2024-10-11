@@ -1,4 +1,4 @@
-// DeleteItemForm.js
+
 import React, { useState } from 'react';
 
 const DeleteItemForm = ({ items, setItems }) => {
