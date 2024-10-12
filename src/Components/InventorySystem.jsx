@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './Styles.css';
+import "./Styles/Styles.css";
 import AddItemForm from './AddItemForm';
 import UpdateItemForm from './UpdateItemForm';
 import DeleteItemForm from './DeleteItemForm';
@@ -7,6 +7,7 @@ import SearchItem from './SearchItem';
 import LowStockItems from './LowStockItem';
 import SortItems from './SortItems';
 import DisplayByCategory from './DisplayCategory';
+import { BrowserRouter as Router, Route, Link, Routes } from 'react-router-dom';
 
 const InventoryManagementSystem = () => {
   const [items, setItems] = useState([])
@@ -96,12 +97,12 @@ const InventoryManagementSystem = () => {
       updatedItems[existingItemIndex] = updatedItem;
       setItems(updatedItems);
 
-      if(oldPrice!=updatedItem.price){
+      if(oldPrice!==updatedItem.price){
         setMessage(`Item with ID ${id} updated successfully! 
         Price changed from $${oldPrice} to $${updatedItem.price}. 
         .`);
       }
-      if(oldQuantity!=updatedItem.quantity){
+      if(oldQuantity!==updatedItem.quantity){
         setMessage(`Item with ID ${id} updated successfully! 
         Quantity changed from ${oldQuantity} to ${updatedItem.quantity}.`);
       }
@@ -229,17 +230,20 @@ const InventoryManagementSystem = () => {
        <h1>INVENTORY MANAGEMENT SYSTEM</h1>
       
         <div className='Container-btns'>
-          <button className='Add-btn' onClick={handleShowAddForm}>Add Item</button>
-          <button className='Update-btn' onClick={handleShowUpdateForm}>Update Item</button>
-          <button className='Remove-btn' onClick={handleShowDeleteForm}>Remove Item</button>
-          <button className='Display-btn' onClick={handleDisplaybyCategory}>Display Items by Category</button>
-          <button className='Display-btn' onClick={handleDisplayAllItems}>Display All Items</button>
-          <button className='Search-btn' onClick={handleSearchItem}>Search Item</button>
-          <button className='Sort-btn' onClick={handleSortItems}>Sort Items</button>
-          <button className='DisplayLow-btn' onClick={handleDisplayLowStock}>Display Low Stock Items</button>
+          <Router>
+            <Link to="/Add Item"><button className='Add-btn' onClick={handleShowAddForm}>Add Item</button></Link>
+            <Link to= "/Update Item" ><button className='Update-btn' onClick={handleShowUpdateForm}>Update Item</button></Link>
+            <Link to= "/Remove Item" ><button className='Remove-btn' onClick={handleShowDeleteForm}>Remove Item</button></Link>
+            <Link to= "/Display Items Category" ><button className='Display-btn' onClick={handleDisplaybyCategory}>Display Items by Category</button></Link>
+            <Link to= "/Display All " ><button className='Display-btn' onClick={handleDisplayAllItems}>Display All Items</button></Link>
+            <Link to= "/Search Item" ><button className='Search-btn' onClick={handleSearchItem}>Search Item</button></Link>
+            <Link to= "/Sort Items" ><button className='Sort-btn' onClick={handleSortItems}>Sort Items</button></Link>
+             <Link to= "/Low Stock Items"><button className='DisplayLow-btn' onClick={handleDisplayLowStock}>Display Low Stock Items</button></Link>
+          </Router>
         </div> 
       </div>
       {showAddForm && (
+       
         <AddItemForm
           id={id} setId={setId}
           name={name} setName={setName}
@@ -267,9 +271,10 @@ const InventoryManagementSystem = () => {
 
       {showDeleteForm && (
         <DeleteItemForm items={items} setItems={setItems}/>
+          
       )
-
       }
+      
 
       {displaySearchItem && (
         <SearchItem items={items} />
@@ -331,7 +336,10 @@ const InventoryManagementSystem = () => {
           )}
       </div>
     )}
+
     
+
+
     </div>
 
     
