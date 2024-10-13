@@ -7,7 +7,7 @@ import SearchItem from './SearchItem';
 import LowStockItems from './LowStockItem';
 import SortItems from './SortItems';
 import DisplayByCategory from './DisplayCategory';
-import { BrowserRouter as Router, Route, Link, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Link } from 'react-router-dom';
 
 const InventoryManagementSystem = () => {
   const [items, setItems] = useState([])
@@ -238,7 +238,7 @@ const InventoryManagementSystem = () => {
             <Link to= "/Display All " ><button className='Display-btn' onClick={handleDisplayAllItems}>Display All Items</button></Link>
             <Link to= "/Search Item" ><button className='Search-btn' onClick={handleSearchItem}>Search Item</button></Link>
             <Link to= "/Sort Items" ><button className='Sort-btn' onClick={handleSortItems}>Sort Items</button></Link>
-             <Link to= "/Low Stock Items"><button className='DisplayLow-btn' onClick={handleDisplayLowStock}>Display Low Stock Items</button></Link>
+            <Link to= "/Low Stock Items"><button className='DisplayLow-btn' onClick={handleDisplayLowStock}>Display Low Stock Items</button></Link>
           </Router>
         </div> 
       </div>
